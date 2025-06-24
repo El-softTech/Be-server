@@ -21,7 +21,7 @@ const todoRoutes = require("./src/routes/todoroute");
 // // app.use("/api/todos", todoRoutes);
 app.use("/api", todoRoutes);
 
-server.listen(port, () => {
+server.listen(port,'0.0.0.0',() => {
   console.log(`✅ Server running on port ${port}`);
 });
 
