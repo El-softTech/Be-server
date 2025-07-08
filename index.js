@@ -9,7 +9,7 @@ const server = http.createServer(app);
 const port = 6969;
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://my-cbt.netlify.app",
     methods: ["GET", "POST"],
   },
 });
