@@ -12,7 +12,7 @@ const io = new Server(server, {
     origin: "https://my-cbt.netlify.app",
     methods: ["GET", "POST"],
   },
-  path: "/proyek1/socket.io",
+  path: "/socket.io",
 });
 
 app.use(cors());
