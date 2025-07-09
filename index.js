@@ -53,18 +53,3 @@ io.on("connection", (socket) => {
   });
 });
 
-
-  socket.on("chat-message", (msg) => {
-    io.emit("chat-message", msg);
-  });
-
-  socket.on("leave", (name) => {
-    socket.broadcast.emit("user-left", name);
-  });
-
-  socket.on("disconnect", () => {
-    if (socket.username) {
-      socket.broadcast.emit("user-left", socket.username);
-    }
-  });
-});
