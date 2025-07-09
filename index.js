@@ -27,10 +27,32 @@ server.listen(port,'0.0.0.0',() => {
 });
 
 io.on("connection", (socket) => {
+  console.log("🚀 New socket connected:", socket.id);
+
   socket.on("join", (name) => {
+    console.log("👋 User joined:", name);
     socket.username = name;
     socket.broadcast.emit("user-joined", name);
   });
+
+  socket.on("chat-message", (msg) => {
+    console.log("💬 Received chat message:", msg);
+    io.emit("chat-message", msg);
+  });
+
+  socket.on("leave", (name) => {
+    console.log("🏃‍♂️ User left:", name);
+    socket.broadcast.emit("user-left", name);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("❌ Disconnected socket:", socket.id, "username:", socket.username);
+    if (socket.username) {
+      socket.broadcast.emit("user-left", socket.username);
+    }
+  });
+});
+
 
   socket.on("chat-message", (msg) => {
     io.emit("chat-message", msg);
